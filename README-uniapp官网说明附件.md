@@ -15,7 +15,7 @@
 > 在目录src/manifest.json中修改成自己的小程序appid
 
 ####注意
-+ 如果通过zip下载，需要新建vue.config.js文件，将以下代码复制进去,如果通过npm链接下载就不用，网站过滤了此文件
++ 如果通过zip下载，需要新建vue.config.js文件，将以下代码复制进去,如果通过github就不用，网站过滤了此文件
 
 ```js
 const path = require('path')
