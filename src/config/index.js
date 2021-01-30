@@ -1,0 +1,1 @@
+export default require(BUILD_ENV === "production" ? "./prod" : "./test")

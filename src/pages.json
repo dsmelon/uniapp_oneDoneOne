@@ -1,0 +1,62 @@
+{
+	"pages": [
+		{
+			"path": "pages/main/main",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}
+	    ,{
+            "path" : "pages/login/login",
+            "style" : {
+				"navigationBarTitleText": "登录"
+			}
+        }
+        ,{
+            "path" : "pages/mine/mine",
+            "style" : {
+				"navigationBarTitleText": "我的"
+			}
+        }
+    ],
+	"subPackages": [{
+			"root": "otherPage",
+			"pages": [
+				{
+				    "path" : "asyncApi/asyncApi",
+				    "style" : {
+						"navigationBarTitleText": "异步api"
+					}
+				}
+			]
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "一定一绝世案例演示",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"backgroundColorTop": "#FFFFFF",
+		"backgroundColorBottom": "#FFFFFF",
+		"h5": {
+			"titleNView": false
+		}
+	},
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#FF0000",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"position": "bottom",
+		"fontSize": "10px",
+		"spacing": "1px",
+		"height": "50px",
+		"list": [{
+			"pagePath": "pages/main/main",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/mine/mine",
+			"text": "我的"
+		}]
+	}
+}
