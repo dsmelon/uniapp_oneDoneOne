@@ -15,6 +15,24 @@
 > 在目录src/manifest.json中修改成自己的小程序appid
 
 ####注意
++ 如果通过zip下载，需要新建vue.config.js文件，将以下代码复制进去,如果通过npm链接下载就不用，网站过滤了此文件
+
+```js
+const path = require('path')
+
+module.exports = {
+	chainWebpack: config => {
+		config.plugin('define').tap(([option, ...other]) => {
+			const options = {
+				...option,
+				BUILD_ENV: `'${process.env.BUILD_ENV}'`
+			}
+			return [options, ...other]
+		})
+	}
+}
+```
+
 + 所有跳转都要使用getApp().global.jump函数
 + 需要登录的地方，点击登录时，要发需要登录的接口，而不是直接调用getApp().global.login方法，后者无法自动更新视图，已封装组件，详情请运行起来看“我页”
 + src/server/api.js里有两个常用的方法，可以按需使用
