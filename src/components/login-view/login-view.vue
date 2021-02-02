@@ -1,8 +1,8 @@
 <template>
-	<block>
+	<view>
 		<button v-if="!isLogin" @click="login" type="primary">去登录</button>
 		<slot v-else></slot>
-	</block>
+	</view>
 </template>
 
 <script>

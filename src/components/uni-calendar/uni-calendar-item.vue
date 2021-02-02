@@ -6,7 +6,8 @@
 		'uni-calendar-item--before-checked':weeks.beforeMultiple,
 		'uni-calendar-item--multiple': weeks.multiple,
 		'uni-calendar-item--after-checked':weeks.afterMultiple,
-		}" @click="choiceDate(weeks)">
+		}"
+	 @click="choiceDate(weeks)">
 		<view class="uni-calendar-item__weeks-box-item">
 			<text v-if="selected&&weeks.extraInfo" class="uni-calendar-item__weeks-box-circle"></text>
 			<text class="uni-calendar-item__weeks-box-text" :class="{
@@ -83,7 +84,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-calendar-item__weeks-box {
 		flex: 1;
 		/* #ifndef APP-NVUE */
@@ -95,13 +96,13 @@
 	}
 
 	.uni-calendar-item__weeks-box-text {
-		font-size: 14px;
-		color: #333;
+		font-size: $uni-font-size-base;
+		color: $uni-text-color;
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
-		font-size: 12px;
-		color: #333;
+		font-size: $uni-font-size-sm;
+		color: $uni-text-color;
 	}
 
 	.uni-calendar-item__weeks-box-item {
@@ -123,46 +124,45 @@
 		width: 8px;
 		height: 8px;
 		border-radius: 8px;
-		background-color: #dd524d;
+		background-color: $uni-color-error;
+
 	}
 
 	.uni-calendar-item--disable {
-		background-color: rgba(249, 249, 249, 0.3);
-		color: #c0c0c0;
+		background-color: rgba(249, 249, 249, $uni-opacity-disabled);
+		color: $uni-text-color-disable;
 	}
 
 	.uni-calendar-item--isDay-text {
-		color: #007aff;
+		color: $uni-color-primary;
 	}
 
 	.uni-calendar-item--isDay {
-		background-color: #007aff;
+		background-color: $uni-color-primary;
 		opacity: 0.8;
 		color: #fff;
 	}
 
 	.uni-calendar-item--extra {
-		color: #dd524d;
+		color: $uni-color-error;
 		opacity: 0.8;
 	}
 
 	.uni-calendar-item--checked {
-		background-color: #007aff;
+		background-color: $uni-color-primary;
 		color: #fff;
 		opacity: 0.8;
 	}
 
 	.uni-calendar-item--multiple {
-		background-color: #007aff;
+		background-color: $uni-color-primary;
 		color: #fff;
 		opacity: 0.8;
 	}
-
 	.uni-calendar-item--before-checked {
 		background-color: #ff5a5f;
 		color: #fff;
 	}
-
 	.uni-calendar-item--after-checked {
 		background-color: #ff5a5f;
 		color: #fff;

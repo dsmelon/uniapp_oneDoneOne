@@ -44,8 +44,9 @@ export default async function request(url, {
 			}, delayTime)
 		}
 	}
-	let { statusCode, data:res = {}, header:{ Date:date = new Date().valueOf() } } = await new Promise(resolve => {
-		uni.request({
+	let { statusCode, data:res = {}, header:{ Date:date = new Date().valueOf() } = {} } = await new Promise(resolve => {
+		if(!url) resolve({statusCode: 200})
+		else uni.request({
 			url: /^http/.test(url) ? url : `${config.host}${url}`,
 			header:{
 				"content-type": "application/x-www-form-urlencoded",

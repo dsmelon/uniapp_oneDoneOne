@@ -32,6 +32,6 @@
 
 <style lang="scss" scoped>
 .page{
-	padding: 40px 36rpx 0;
+	padding: 40rpx 36rpx 0;
 }
 </style>

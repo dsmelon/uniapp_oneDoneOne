@@ -1,6 +1,7 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" :class="[popupstyle]" @touchmove.stop.prevent="clear">
-		<uni-transition v-if="maskShow" class="uni-mask--hook" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
+		<uni-transition v-if="maskShow" class="uni-mask--hook" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans"
+		 @click="onTap" />
 		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
@@ -207,9 +208,7 @@
 		}
 	}
 </script>
-<style scoped>
-	@charset "UTF-8";
-
+<style lang="scss" scoped>
 	.uni-popup {
 		position: fixed;
 		/* #ifndef APP-NVUE */
@@ -223,7 +222,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: $uni-bg-color-mask;
 		opacity: 0;
 	}
 
@@ -277,9 +276,11 @@
 	}
 
 	.content-ani {
+		// transition: transform 0.3s;
 		transition-property: transform, opacity;
 		transition-duration: 0.2s;
 	}
+
 
 	.uni-top-content {
 		transform: translateY(0);

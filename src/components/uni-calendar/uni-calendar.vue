@@ -141,10 +141,10 @@
 				// this.cale.setDate(newVal)
 				this.init(newVal)
 			},
-			startDate(val) {
+			startDate(val){
 				this.cale.resetSatrtDate(val)
 			},
-			endDate(val) {
+			endDate(val){
 				this.cale.resetEndDate(val)
 			},
 			selected(newVal) {
@@ -314,7 +314,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-calendar {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -328,7 +328,7 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: $uni-bg-color-mask;
 		transition-property: opacity;
 		transition-duration: 0.3s;
 		opacity: 0;
@@ -338,7 +338,7 @@
 	}
 
 	.uni-calendar--mask-show {
-		opacity: 1;
+		opacity: 1
 	}
 
 	.uni-calendar--fixed {
@@ -371,7 +371,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 50px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: $uni-border-color;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 	}
@@ -382,13 +382,14 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: space-between;
-		border-top-color: #e5e5e5;
+		border-top-color: $uni-border-color;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
 
 	.uni-calendar--fixed-width {
 		width: 50px;
+		// padding: 0 15px;
 	}
 
 	.uni-calendar__backtoday {
@@ -402,15 +403,15 @@
 		font-size: 12px;
 		border-top-left-radius: 25px;
 		border-bottom-left-radius: 25px;
-		color: #333;
-		background-color: #f1f1f1;
+		color: $uni-text-color;
+		background-color: $uni-bg-color-hover;
 	}
 
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: 14px;
-		color: #333;
+		font-size: $uni-font-size-base;
+		color: $uni-text-color;
 	}
 
 	.uni-calendar__header-btn-box {
@@ -427,10 +428,10 @@
 	.uni-calendar__header-btn {
 		width: 10px;
 		height: 10px;
-		border-left-color: #808080;
+		border-left-color: $uni-text-color-placeholder;
 		border-left-style: solid;
 		border-left-width: 2px;
-		border-top-color: #555555;
+		border-top-color: $uni-color-subtitle;
 		border-top-style: solid;
 		border-top-width: 2px;
 	}
@@ -442,6 +443,7 @@
 	.uni-calendar--right {
 		transform: rotate(135deg);
 	}
+
 
 	.uni-calendar__weeks {
 		position: relative;
@@ -493,7 +495,7 @@
 	.uni-calendar__box-bg-text {
 		font-size: 200px;
 		font-weight: bold;
-		color: #999;
+		color: $uni-text-color-grey;
 		opacity: 0.1;
 		text-align: center;
 		/* #ifndef APP-NVUE */

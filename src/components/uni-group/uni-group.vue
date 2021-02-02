@@ -1,9 +1,13 @@
 <template>
-	<view class="uni-group" :style="{marginTop: `${top}px` }">
-		<view v-if="title" class="uni-group__content">
-			<text class="uni-group__content-title">{{ title }}</text>
+	<view class="uni-group" :class="['uni-group--'+mode ,margin?'group-margin':'']" :style="{marginTop: `${top}px` }">
+		<slot name="title">
+			<view v-if="title" class="uni-group__title" :style="{'padding-left':border?'30px':'15px'}">
+				<text class="uni-group__title-text">{{ title }}</text>
+			</view>
+		</slot>
+		<view class="uni-group__content" :class="{'group-conent-padding':border}">
+			<slot />
 		</view>
-		<slot />
 	</view>
 </template>
 
@@ -16,7 +20,7 @@
 	 * @property {Number} top 分组间隔
 	 */
 	export default {
-		name: 'UniFormGroup',
+		name: 'uniGroup',
 		props: {
 			title: {
 				type: String,
@@ -25,10 +29,17 @@
 			top: {
 				type: [Number, String],
 				default: 10
+			},
+			mode: {
+				type: String,
+				default: 'default'
 			}
 		},
 		data() {
-			return {}
+			return {
+				margin: false,
+				border: false
+			}
 		},
 		watch: {
 			title(newVal) {
@@ -37,38 +48,80 @@
 				}
 			}
 		},
+		created() {
+			this.form = this.getForm()
+			if (this.form) {
+				this.margin = true
+				this.border = this.form.border
+			}
+		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm() {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== 'uniForms') {
+					parent = parent.$parent;
+					if (!parent) return false
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			onClick() {
 				this.$emit('click')
 			}
 		}
 	}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 	.uni-group {
 		background: #fff;
 		margin-top: 10px;
+		// border: 1px red solid;
 	}
 
-	.uni-group__content {
+	.group-margin {
+		margin: 0 -15px;
+	}
+
+	.uni-group__title {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		align-items: center;
 		padding-left: 15px;
 		height: 40px;
-		background-color: #f8f8f8;
+		background-color: $uni-bg-color-grey;
 		font-weight: normal;
-		color: #333;
+		color: $uni-text-color;
 	}
 
-	.uni-group__content-title {
-		font-size: 14px;
-		color: #333;
+	.uni-group__content {
+		padding: 15px;
+		// padding-bottom: 5px;
+		background-color: #FFF;
+	}
+
+	.group-conent-padding {
+		padding: 0 15px;
+	}
+
+	.uni-group__title-text {
+		font-size: $uni-font-size-base;
+		color: $uni-text-color;
 	}
 
 	.distraction {
 		flex-direction: row;
 		align-items: center;
+	}
+
+	.uni-group--card {
+		margin: 10px;
+		border-radius: 5px;
+		overflow: hidden;
+		box-shadow: 0 0 5px 1px rgba($color: #000000, $alpha: 0.08);
 	}
 </style>

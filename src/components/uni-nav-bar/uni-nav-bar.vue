@@ -1,13 +1,15 @@
 <template>
 	<view class="uni-navbar">
-		<view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ 'background-color': backgroundColor }" class="uni-navbar__content">
+		<view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ 'background-color': backgroundColor }"
+		 class="uni-navbar__content">
 			<uni-status-bar v-if="statusBar" />
 			<view :style="{ color: color,backgroundColor: backgroundColor }" class="uni-navbar__header uni-navbar__content_view">
 				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="leftIcon.length">
 						<uni-icons :color="color" :type="leftIcon" size="24" />
 					</view>
-					<view :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }" class="uni-navbar-btn-text uni-navbar__content_view" v-if="leftText.length">
+					<view :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }" class="uni-navbar-btn-text uni-navbar__content_view"
+					 v-if="leftText.length">
 						<text :style="{ color: color, fontSize: '14px' }">{{ leftText }}</text>
 					</view>
 					<slot name="left" />
@@ -112,11 +114,11 @@
 				default: true
 			}
 		},
-		mounted() {
-			if (uni.report && this.title !== '') {
-				uni.report('title', this.title)
-			}
-		},
+        mounted() {
+          if(uni.report && this.title !== '') {
+              uni.report('title', this.title)
+          }
+        },
 		methods: {
 			onClickLeft() {
 				this.$emit("clickLeft");
@@ -131,23 +133,25 @@
 	};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	$nav-height: 44px;
+
 	.uni-nav-bar-text {
 		/* #ifdef APP-PLUS */
 		font-size: 34rpx;
 		/* #endif */
 		/* #ifndef APP-PLUS */
-		font-size: 16px;
+		font-size: $uni-font-size-lg;
 		/* #endif */
 	}
 
 	.uni-nav-bar-right-text {
-		font-size: 14px;
+		font-size: $uni-font-size-base;
 	}
 
 	.uni-navbar__content {
 		position: relative;
-		background-color: #ffffff;
+		background-color: $uni-bg-color;
 		overflow: hidden;
 		width: 750rpx;
 	}
@@ -158,6 +162,7 @@
 		/* #endif */
 		align-items: center;
 		flex-direction: row;
+		// background-color: #FFFFFF;
 	}
 
 	.uni-navbar__header {
@@ -165,9 +170,10 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		height: 44px;
-		line-height: 44px;
+		height: $nav-height;
+		line-height: $nav-height;
 		font-size: 16px;
+		// background-color: #ffffff;
 	}
 
 	.uni-navbar__header-btns {
@@ -209,11 +215,12 @@
 		flex: 1;
 		align-items: center;
 		justify-content: center;
-		font-size: 14px;
+		font-size: $uni-font-size-base;
 	}
 
+
 	.uni-navbar__placeholder-view {
-		height: 44px;
+		height: $nav-height;
 	}
 
 	.uni-navbar--fixed {
@@ -230,6 +237,6 @@
 	.uni-navbar--border {
 		border-bottom-width: 1rpx;
 		border-bottom-style: solid;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: $uni-border-color;
 	}
 </style>

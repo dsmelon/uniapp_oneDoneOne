@@ -4,7 +4,8 @@
 		<!-- #endif -->
 		<view class="uni-list-ad">
 			<view v-if="borderShow" :class="{'uni-list--border':border,'uni-list-item--first':isFirstChild}"></view>
-			<ad style="width: 200px;height: 300px;border-width: 1px;border-color: red;border-style: solid;" adpid="1111111111" unit-id="" appid="" apid="" type="feed" @error="aderror" @close="closeAd"></ad>
+			<ad style="width: 200px;height: 300px;border-width: 1px;border-color: red;border-style: solid;" adpid="1111111111"
+			 unit-id="" appid="" apid="" type="feed" @error="aderror" @close="closeAd"></ad>
 		</view>
 		<!-- #ifdef APP-NVUE -->
 	</cell>
@@ -25,7 +26,7 @@
 
 			}
 		},
-		inject: ['list'],
+		// inject: ['list'],
 		data() {
 			return {
 				isFirstChild: false,
@@ -35,13 +36,29 @@
 		},
 
 		mounted() {
-			if (!this.list.firstChildAppend) {
-				this.list.firstChildAppend = true
-				this.isFirstChild = true
+			this.list = this.getForm()
+			if (this.list) {
+				if (!this.list.firstChildAppend) {
+					this.list.firstChildAppend = true
+					this.isFirstChild = true
+				}
+				this.border = this.list.border
 			}
-			this.border = this.list.border
 		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniList') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			aderror(e) {
 				console.log("aderror: " + JSON.stringify(e.detail));
 			},
@@ -52,7 +69,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-list-ad {
 		position: relative;
 		border: 1px red solid;
@@ -62,11 +79,11 @@
 		position: relative;
 		padding-bottom: 1px;
 		/* #ifdef APP-PLUS */
-		border-top-color: #e5e5e5;
+		border-top-color: $uni-border-color;
 		border-top-style: solid;
 		border-top-width: 0.5px;
 		/* #endif */
-		margin-left: 15px;
+		margin-left: $uni-spacing-row-lg;
 	}
 
 	/* #ifndef APP-NVUE */
@@ -77,9 +94,9 @@
 		left: 0;
 		height: 1px;
 		content: '';
-		-webkit-transform: scaleY(0.5);
-		transform: scaleY(0.5);
-		background-color: #e5e5e5;
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: $uni-border-color;
 	}
 
 	.uni-list-item--first:after {

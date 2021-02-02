@@ -17,7 +17,9 @@
 			</view>
 			<view class="fild-body" :class="[inputBorder ? 'uni-input-border' : '']" :style="[borderEixstTextareaStyle]">
 				<view class="uni-flex-1 uni-flex" :style="[inputWrapStyle]">
-					<textarea v-if="type == 'textarea'" class="uni-flex-1 uni-textarea-class" :name="name" :value="value" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focus" :autoHeight="autoHeight" @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm" @tap="fieldClick" />
+					<textarea v-if="type == 'textarea'" class="uni-flex-1 uni-textarea-class" :name="name" :value="value" :placeholder="placeholder"
+					 :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focus" :autoHeight="autoHeight"
+					 @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm" @tap="fieldClick" />
 					<input
 						v-else
 						:type="type"
@@ -318,7 +320,9 @@ export default {
 					this.formRules = this.form.formRules[this.name];
 				}
 				this.validator = this.form.validator;
-				this.form.formData[this.name] = this.value || '';
+				if(this.name){
+					this.form.formData[this.name] = this.value || '';
+				}
 			} else {
 				this.labelPos = this.labelPosition || 'left';
 				this.labelWid = this.labelWidth || 65;
@@ -471,94 +475,112 @@ export default {
 };
 </script>
 
-<style scoped>@charset "UTF-8";
+<style lang="scss" scoped>
 .uni-field {
-  padding: 16px 14px;
-  text-align: left;
-  color: #333;
-  font-size: 14px;
-  background-color: #fff; }
+	padding: 16px 14px;
+	text-align: left;
+	color: #333;
+	font-size: 14px;
+	background-color: #fff;
+}
 
 .uni-field-inner {
-  display: flex;
-  align-items: center; }
+	display: flex;
+	align-items: center;
+}
 
 .uni-textarea-inner {
-  align-items: flex-start; }
+	align-items: flex-start;
+}
 
 .uni-textarea-class {
-  min-height: 48px;
-  width: auto;
-  font-size: 14px; }
+	min-height: 48px;
+	width: auto;
+	font-size: 14px;
+}
 
 .fild-body {
-  width: 100%;
-  display: flex;
-  flex: 1;
-  align-items: center; }
+	width: 100%;
+	display: flex;
+	flex: 1;
+	align-items: center;
+}
 
 .uni-arror-right {
-  margin-left: 4px; }
+	margin-left: 4px;
+}
 
 .uni-label-text {
-  display: inline-block; }
+	display: inline-block;
+}
 
 .uni-label-left-gap {
-  margin-left: 3px; }
+	margin-left: 3px;
+}
 
 .uni-label-postion-top {
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 1; }
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 1;
+}
 
 .uni-field-label {
-  width: 65px;
-  flex: 1 1 65px;
-  text-align: left;
-  position: relative;
-  display: flex;
-  align-items: center; }
+	width: 65px;
+	flex: 1 1 65px;
+	text-align: left;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
 
 .uni-required::before {
-  content: '*';
-  position: absolute;
-  left: -8px;
-  font-size: 14px;
-  color: #dd524d;
-  height: 9px;
-  line-height: 1; }
+	content: '*';
+	position: absolute;
+	left: -8px;
+	font-size: 14px;
+	color: $uni-color-error;
+	height: 9px;
+	line-height: 1;
+}
 
 .uni-field__input-wrap {
-  position: relative;
-  overflow: hidden;
-  font-size: 14px;
-  height: 24px;
-  flex: 1;
-  width: auto; }
+	position: relative;
+	overflow: hidden;
+	font-size: 14px;
+	height: 24px;
+	flex: 1;
+	width: auto;
+}
 
 .uni-clear-icon {
-  display: flex;
-  align-items: center; }
+	display: flex;
+	align-items: center;
+}
 
 .uni-error-message {
-  line-height: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  color: #dd524d;
-  font-size: 12px;
-  text-align: left; }
+	line-height: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	color: $uni-color-error;
+	font-size: 12px;
+	text-align: left;
+}
 
 .uni-input-error-border {
-  border-color: #dd524d; }
+	border-color: $uni-color-error;
+}
 
 .placeholder-style {
-  color: #969799; }
+	color: rgb(150, 151, 153);
+}
 
 .uni-input-class {
-  font-size: 14px; }
+	font-size: 14px;
+}
 
 .uni-button-wrap {
-  margin-left: 4px; }
+	margin-left: 4px;
+}
 
 /* start--Retina 屏幕下的 1px 边框--start */
 .uni-border,
@@ -567,7 +589,8 @@ export default {
 .uni-border-right,
 .uni-border-top,
 .uni-border-top-bottom {
-  position: relative; }
+	position: relative;
+}
 
 .uni-border-bottom:after,
 .uni-border-left:after,
@@ -575,76 +598,89 @@ export default {
 .uni-border-top-bottom:after,
 .uni-border-top:after,
 .uni-border:after {
-  /* #ifndef APP-NVUE */
-  content: ' ';
-  /* #endif */
-  position: absolute;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  box-sizing: border-box;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  width: 199.8%;
-  height: 199.7%;
-  transform: scale(0.5, 0.5);
-  border: 0 solid #e5e5e5;
-  z-index: 2; }
+	/* #ifndef APP-NVUE */
+	content: ' ';
+	/* #endif */
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+	box-sizing: border-box;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	// 多加0.1%，能解决有时候边框缺失的问题
+	width: 199.8%;
+	height: 199.7%;
+	transform: scale(0.5, 0.5);
+	border: 0 solid $uni-border-color;
+	z-index: 2;
+}
 
 .uni-input-border {
-  min-height: 34px;
-  padding-left: 4px;
-  border: 1px solid #e5e5e5;
-  border-radius: 6px;
-  box-sizing: border-box; }
+	min-height: 34px;
+	padding-left: 4px;
+	border: 1px solid $uni-border-color;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
 
 .uni-border-top:after {
-  border-top-width: 1px; }
+	border-top-width: 1px;
+}
 
 .uni-border-left:after {
-  border-left-width: 1px; }
+	border-left-width: 1px;
+}
 
 .uni-border-right:after {
-  border-right-width: 1px; }
+	border-right-width: 1px;
+}
 
 .uni-border-bottom:after {
-  border-bottom-width: 1px; }
+	border-bottom-width: 1px;
+}
 
 .uni-border-top-bottom:after {
-  border-width: 1px 0; }
+	border-width: 1px 0;
+}
 
 .uni-border:after {
-  border-width: 1px; }
-
+	border-width: 1px;
+}
 /* end--Retina 屏幕下的 1px 边框--end */
+
 .uni-icon-wrap {
-  padding-left: 3px;
-  padding-right: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+	padding-left: 3px;
+	padding-right: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 .uni-button-wrap {
-  display: flex;
-  align-items: right;
-  justify-content: center; }
-
+	display: flex;
+	align-items: right;
+	justify-content: center;
+}
 .uni-clear-icon {
-  display: flex;
-  align-items: center;
-  margin-left: 4px; }
+	display: flex;
+	align-items: center;
+	margin-left: 4px;
+}
 
 .uni-flex {
-  /* #ifndef APP-NVUE */
-  display: flex;
-  /* #endif */
-  flex-direction: row;
-  align-items: center; }
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: row;
+	align-items: center;
+}
 
 .uni-flex-1 {
-  flex: 1; }
-
+	flex: 1;
+}
 .uni-error-in-label {
-  display: flex;
-  flex-direction: row; }
+	display: flex;
+	flex-direction: row;
+}
 </style>

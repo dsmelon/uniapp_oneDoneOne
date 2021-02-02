@@ -36,7 +36,7 @@
 				type: [Number, String],
 				default: 16
 			},
-			customIcons: {
+			customIcons:{
 				type: String,
 				default: ''
 			}
@@ -54,14 +54,15 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	/* #ifndef APP-NVUE */
 	@font-face {
 		font-family: uniicons;
-		src: url("./uni.ttf") format("truetype");
+		src: url('./uni.ttf') format('truetype');
 	}
 
 	/* #endif */
+
 	.uni-icons {
 		font-family: uniicons;
 		text-decoration: none;

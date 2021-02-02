@@ -1,8 +1,8 @@
 <template>
-	<block>
-		首页
-		<button @click="jump">异步api和测试</button>
-	</block>
+	<view>
+		<image class="logo" src="/static/logo.png" mode="widthFix"></image>
+		<button @click="jump">去演示页面</button>
+	</view>
 </template>
 
 <script>
@@ -16,5 +16,7 @@
 </script>
 
 <style lang="scss">
-
+.logo{
+	width: 200rpx;
+}
 </style>

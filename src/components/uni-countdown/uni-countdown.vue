@@ -172,7 +172,10 @@
 		}
 	}
 </script>
-<style scoped>
+<style lang="scss" scoped>
+	$countdown-height: 48rpx;
+	$countdown-width: 52rpx;
+
 	.uni-countdown {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -187,9 +190,9 @@
 		display: flex;
 		/* #endif */
 		justify-content: center;
-		line-height: 48rpx;
+		line-height: $countdown-height;
 		padding: 5rpx;
-		font-size: 12px;
+		font-size: $uni-font-size-sm;
 	}
 
 	.uni-countdown__number {
@@ -198,11 +201,11 @@
 		/* #endif */
 		justify-content: center;
 		align-items: center;
-		width: 52rpx;
-		height: 48rpx;
-		line-height: 48rpx;
+		width: $countdown-width;
+		height: $countdown-height;
+		line-height: $countdown-height;
 		margin: 5rpx;
 		text-align: center;
-		font-size: 12px;
+		font-size: $uni-font-size-sm;
 	}
 </style>

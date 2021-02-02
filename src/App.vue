@@ -152,7 +152,7 @@
     }
 </script>
 
-<style>
+<style lang="scss">
 	*,view,page,button{
 		box-sizing: border-box;
 	}
